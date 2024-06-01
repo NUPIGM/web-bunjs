@@ -71,14 +71,12 @@ const api = {
     },
   },
 };
-
 Bun.serve({
-  port: Bun.env.BUN_PORT, // 默认为$BUN_PORT、$PORT、$NODE_PORT，否则为3000
-  hostname: Bun.env.BUN_HOST,
-  production: true, // 生产环境下自动压缩响应体，默认为false
+  port: Bun.env.BUN_PORT || 7799, // 默认为$BUN_PORT、$PORT、$NODE_PORT，否则为3000
+  hostname: Bun.env.BUN_HOST || "0.0.0.0", // 默认为$BUN_HOST、$HOST、$NODE_HOST，否则为0.0.0.0
+  development: false, // 生产环境下自动压缩响应体，默认为false
   /**
    * TLS配置
-   *
   tls: {
     key: Bun.file(Bun.env.KEY_PATH), // TLS密钥的路径
     cert: Bun.file(Bun.env.CERT_PATH), // TLS证书的路径
